@@ -7,17 +7,30 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-  string myText;
-
-  ifstream MyReadFile("example.js");
-
-  while (getline(MyReadFile, myText))
+  if (argc > 1)
   {
-
-    cout << myText << endl;
+    if (string(argv[argc - 1]).rfind("--", 0) == 0)
+    {
+      cout << "StartupError: No input file provided." << endl;
+      exit(1);
+    }
+  }
+  else
+  {
+    cout << "StartupError: No input file provided." << endl;
+    exit(1);
   }
 
-  MyReadFile.close();
+  string js_input;
 
-  return 0;
+  ifstream js_input_source(argv[argc - 1]);
+
+  while (getline(js_input_source, js_input))
+  {
+    cout << js_input << endl;
+  }
+
+  js_input_source.close();
+
+  exit(0);
 }

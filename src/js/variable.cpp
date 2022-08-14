@@ -26,4 +26,8 @@ namespace JSInternal
     this->Value = value;
     this->IsMutable = mutability;
   }
+
+  VariableAssign::~VariableAssign()
+  {
+  }
 }
