@@ -1,10 +1,13 @@
 #include <string>
 #include <vector>
-#include "inc/keyword.h"
+#include "inc/variable.h"
 
 using namespace std;
 
 namespace JSInternal
 {
-  Keyword keywords[] = {Keyword("let")};
+  VariableAssign varAssign[] = {
+      VariableAssign("let", Mutable),
+      VariableAssign("const", Imutable),
+  };
 }
