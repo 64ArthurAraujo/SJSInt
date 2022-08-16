@@ -1,9 +1,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
-#include "inc/parser.h"
+#include "include/parser.h"
 
 using namespace std;
+
+void print_nofile()
+{
+  cout << "StartupError: No input file provided!" << endl;
+  cout << "Inform a path or try to run again with the '--shell' flag." << endl;
+}
 
 int main(int argc, char *argv[])
 {
@@ -11,26 +17,18 @@ int main(int argc, char *argv[])
   {
     if (string(argv[argc - 1]).rfind("--", 0) == 0)
     {
-      cout << "StartupError: No input file provided." << endl;
+      print_nofile();
       exit(1);
     }
   }
   else
   {
-    cout << "StartupError: No input file provided." << endl;
+    print_nofile();
     exit(1);
   }
 
-  string js_input;
-
   ifstream js_input_source(argv[argc - 1]);
 
-  while (getline(js_input_source, js_input))
-  {
-    cout << js_input << endl;
-  }
-
-  js_input_source.close();
-
-  exit(0);
+  // pn: directs the basic "flow" of the application to another file
+  parse_file(&js_input_source);
 }

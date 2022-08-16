@@ -5,6 +5,20 @@
 
 using namespace std;
 
+void parse_file(ifstream *jsfile)
+{
+  string jsbuffer;
+
+  while (getline(*jsfile, jsbuffer))
+  {
+    cout << jsbuffer << endl;
+  }
+
+  jsfile->close();
+
+  exit(0);
+}
+
 vector<string> split_statement(string statement)
 {
   string delimiter = " ";
